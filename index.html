@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>RING-NeRF</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <meta property="og:image" content="https://jonbarron.info/zipnerf/img/nottingham.jpg"> -->
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1296">
+    <meta property="og:image:height" content="840">
+    <meta property="og:type" content="website" />
+    <!-- <meta property="og:url" content="https://jonbarron.info/zipnerf/"/> -->
+    <meta property="og:title" content="RING-NeRF: A Versatile Architecture based on Residual Implicit Neural Grids" />
+    <meta property="og:description" content="Since their introduction, Neural Fields have become very popular for 3D reconstruction and new view synthesis. Recent researches focused on accelerating the process, as well as improving the robustness to variation of the observation distance and limited number of supervised viewpoints. However, those approaches often led to dedicated solutions that cannot be easily combined. To tackle this issue, we introduce a new simple but efficient architecture named RING-NeRF, based on Residual Implicit Neural Grids, that provides a control on the level of detail of the mapping function between the scene and the latent spaces. Associated with a distance-aware forward mapping mechanism and a continuous coarse-to-fine reconstruction process, our versatile architecture demonstrates both fast training and state-of-the-art performances in terms of: (1) anti-aliased rendering, (2) reconstruction quality from few supervised viewpoints, and (3) robustness in the absence of appropriate scene-specific initialization for SDF-based NeRFs. We also demonstrate that our architecture can dynamically add grids to increase the details of the reconstruction, opening the way to adaptive reconstruction." />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="RING-NeRF: A Versatile Architecture based on Residual Implicit Neural Grids" />
+    <meta name="twitter:description" content="Since their introduction, Neural Fields have become very popular for 3D reconstruction and new view synthesis. Recent researches focused on accelerating the process, as well as improving the robustness to variation of the observation distance and limited number of supervised viewpoints. However, those approaches often led to dedicated solutions that cannot be easily combined. To tackle this issue, we introduce a new simple but efficient architecture named RING-NeRF, based on Residual Implicit Neural Grids, that provides a control on the level of detail of the mapping function between the scene and the latent spaces. Associated with a distance-aware forward mapping mechanism and a continuous coarse-to-fine reconstruction process, our versatile architecture demonstrates both fast training and state-of-the-art performances in terms of: (1) anti-aliased rendering, (2) reconstruction quality from few supervised viewpoints, and (3) robustness in the absence of appropriate scene-specific initialization for SDF-based NeRFs. We also demonstrate that our architecture can dynamically add grids to increase the details of the reconstruction, opening the way to adaptive reconstruction." />
+    <!-- <meta name="twitter:image" content="https://jonbarron.info/zipnerf/img/teaser.jpg" /> -->
+
+
+<!-- <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>"> -->
+
+
+<link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+rel="stylesheet">
+
+<link rel="stylesheet" href="./static/css/bulma.min.css">
+<link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+<link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+<link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+<link rel="stylesheet" href="./static/css/index.css">
+<link rel="icon" href="./img/icon.ico">
+
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    
+    <script src="js/app.js"></script>
+    <script src="js/video_comparison.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+
+</head>
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <h2 class="col-md-12 text-center">
+                <b>RING-NeRF </b>: A Versatile Architecture based on Residual Implicit Neural Grids</br> 
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline">
+                    <li>
+                        <a href="https://doriandpetit.com/">
+                          Doriand Petit¹²
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://scholar.google.com/citations?hl=fr&user=Ym-suFYAAAAJ">
+                            Steve Bourgeois¹
+                          </a>
+                    </li>
+                    <li>
+                        <a href="https://cedric.cnam.fr/lab/en/author/paveld/">
+                          Dumitru Pavel¹
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://scholar.google.com/citations?user=kUVG8pIAAAAJ&hl=fr">
+                          Vincent Gay-Bellile¹
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://scholar.google.fr/citations?hl=fr&user=be4jSOIAAAAJ&view_op=list_works&sortby=title">
+                          Florian Chabot¹
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.irit.fr/~Loic.Barthe/">
+                          Loïc Barthe²
+                        </a>
+                    </li>
+                    </br>¹Université Paris-Saclay, CEA List, F-91120, Palaiseau, France     ²CNRS, IRIT, Université de Toulouse, France
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="row">
+                <div class="col-md-4 col-md-offset-4 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+                            <a href="https://arxiv.org/abs/2312.03357">
+                            <image src="img/paper_image.jpg" height="60px">
+                                <h4><strong>Paper</strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/CEA-LIST">
+                            <image src="img/github.png" height="60px">
+                                <h4><strong>Code (To be released)</strong></h4>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Abstract
+                </h3>
+                <p class="text-justify">
+Since their introduction, Neural Fields have become very popular for 3D reconstruction and new view synthesis. Recent researches focused on accelerating the process, as well as improving the robustness to variation of the observation distance and limited number of supervised viewpoints. However, those approaches often led to dedicated solutions that cannot be easily combined. To tackle this issue, we introduce a new simple but efficient architecture named RING-NeRF, based on Residual Implicit Neural Grids, that provides a control on the level of detail of the mapping function between the scene and the latent spaces. Associated with a distance-aware forward mapping mechanism and a continuous coarse-to-fine reconstruction process, our versatile architecture demonstrates both fast training and state-of-the-art performances in terms of: (1) anti-aliased rendering, (2) reconstruction quality from few supervised viewpoints, and (3) robustness in the absence of appropriate scene-specific initialization for SDF-based NeRFs. We also demonstrate that our architecture can dynamically add grids to increase the details of the reconstruction, opening the way to adaptive reconstruction.                 </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Global Scheme
+                </h3>
+                <div class="text-center">
+                    <div style="position:relative;padding-top:30.25%;">
+                        <img src="img/global_scheme.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    </div>
+                    <p class="text-justify">
+                        Overview of RING-NeRF: to render a pixel, the casted cone is sampled with cubes. Depending on the cube volume, the corresponding LOD of the scene is selected and the latent feature is computed from the Residual Implicit Neural Grids accordingly. The density and color of the cube are first decoded from the latent feature with a tiny MLP and then integrated with other samples through volume rendering.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    A NERF architecture which induces Level Of Details by design
+                </h3>
+                <p class="text-justify">
+                    While a Neural Field based on a single 3D feature grid defines a single mapping function between the MLP-decoder feature space and the 3D scene space, our architecture, with its 3D hierarchical grid linked with residual connections, is able to define such a function continuously in the scale space. The architecture itself induces, by construction, a notion of level of details in the representation, allowing to reconstruct a scene at multiple precisions even if the reconstruction is only supervised at the highest level of details.
+                </p>
+                
+
+                <div class="columns is-vcentered interpolation-panel">
+                    <div class="column is-3 has-text-centered">
+                      <img src="./static/images/interpolate_start.jpg"
+                           class="interpolation-image"
+                           alt="Interpolate start reference image."/>
+                      <p>First Grid Only </p>
+                    </div>
+                    <div class="column interpolation-video-column">
+                      <div id="interpolation-image-wrapper">
+                        Loading...
+                      </div>
+                      <input class="slider is-fullwidth is-large is-info"
+                             id="interpolation-slider"
+                             step="1" min="10" max="79" value="45" type="range">
+                    </div>
+                    <div class="column is-3 has-text-centered">
+                      <img src="./static/images/interpolate_end.jpg"
+                           class="interpolation-image"
+                           alt="Interpolation end reference image."/>
+                      <p class="is-bold">All 8 Grids</p>
+                    </div>
+                  </div>
+                  <p class="text-justify">
+                    The model illustrated here contains 8 grids of increasing resolution which have all been used jointly for the training at maximum precision. Even without specific supervision, any LOD in-between 1 and 8 can be chosen to reconstruct the scene with the corresponding resolution.
+                  </p>
+                  <p>
+                    Moreover, unlike other architectures that rely on a decoder latent-space which is not invariant to the position in the 3D scene space due to the use of positional encoding (eg. NGLOD) nor invariant to the level of details due to the use of feature concatenation (eg. Instant-NGP) , downweigthing related the LOD (eg. Zip-NeRF) or use of per-level MLP-decoder (eg. NGLOD, MFLOD,…), our architecture relies on a latent space that is invariant to both of them. This property makes our architecture particularly suitable for incremental reconstruction in space and level of details.
+                  </p>
+                </div>
+        </div>
+        
+<br>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Distance-Aware Forward Mapping for Fast Anti-Aliazing 
+                </h3>
+                <p class="text-justify">
+                    We also use the properties of our architecture to propose an adapted distance-aware forward mapping to easily solve aliasing issues. 
+                </p> <p class="text-justify">
+                    The nerfacto baseline (right) cannot easily interact with images of different resolutions and/or varying distances of observation. This results in blurred renderings when looking at high resolution renderings and the apparition of aliasing artifacts at low resolution. In comparison, RING-NeRF (left) better adapts to these parameters and produces better renderings in both high and low resolution (respectively near and far observations). 
+
+                </p>
+                <div class="column">
+                <video class="video" width=10% id="xyalias" loop playsinline autoplay muted src="img/FullAA.mp4" onplay="resizeAndPlay(this)"></video>
+                <canvas height=0 class="videoMerge" id="xyaliasMerge"></canvas></div>
+                <p>
+                    Similarly to Zip-NeRF, our solution uses cone-casting to adjust the level of details depending on the distance of the sample to the camera. However, unlike Zip-NeRF, the LOD is directly captured by our scene representation. Consequently, our solution is much faster than Zip-NeRF for both reconstruction and rendering since it does not need to achieve multi-sampling, while providing equivalent quality.
+                    
+                </p>
+                <div class="column">
+                <video class="video" width=150% id="timezip" controls loop playsinline autoplay muted onplay="resizeAndPlay(this)">
+                    <source src="img/ZipCompa.mp4" type="video/mp4" /></video>
+                </div>
+            </div> 
+        </div>
+       
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Continuous Coarse-To-Fine Optimization for more Robust NeRF models
+                </h3>
+                <p class="text-justify">
+                    NeRF models often lack robustness when facing harder-than-usual setups, such as few viewpoints or when foregoing the scene-specific initialization in surface-based reconstruction. While we demonstrated that RING-NeRF is stabler in itself than the Instant-NGP-based nerfacto, we also proposed an adapted coarse-to-fine training process useful to bring much more robustness.  While some works already used similar progressive regularization with Instant-NGP-based models (eg. NeuralAngelo), we benefit from RING-NeRF's properties to obtain a more adapted continuous process which progressively uses more degrees of freedom for the mapping function in the decoder latent space rather than learn new dimensions of it from scratch like concatenation-based architectures.
+                </p> <p class="text-justify">
+                    We demonstrate the increased stability first on few viewpoints setups. Combined with a simple density loss taken from FreeNeRF to reduce near-cameras artifacts, this results in more 3D-coherent reconstructions when using few views than the adapted nerfacto+ baseline (nerfacto with coarse-to-fine and the same density loss). Note that the unadapted nerfacto does not succeed in creating a coherent geometry, as it mostly overfits in front of the training cameras.
+                </p>
+                <div style="position:relative;padding-top:80.25%;">
+                    <img src="img/few-web.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <p class="text-justify">
+                    SDF reconstruction is known to be a more unstable process than density-based NeRF reconstruction, requiring a scene-specific initialization to converge, as it adds an Eikonal constraint on the model's output. This scene-specific initialization becomes an issue in complex environments and incremental setups, where several types of scenes can coexist and are not necessarily known beforehand. In light of our previously shown increase of stability, we also demonstrated that RING-NeRF permits to forego the initialization of our model while keeping both a precision close to initialization-required models and the convergence speed of faster models  (eg. Neus-Facto) which fail without initialization.
+                </p>
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                      <td style="text-align: center;">
+                        <video class="video" width=100% id="sdf" loop playsinline autoplay muted src="img/final2.mp4" onplay="resizeAndPlay(this)"></video>
+                        <canvas height=0 class="videoMerge" id="sdfMerge"></canvas>
+                      </td>
+                      <td style="text-align: center;vertical-align: middle;">
+                        <div>
+                        <video class="video" width=60% id="sdfgt" loop playsinline autoplay muted src="img/finalGT.mp4" onplay="resizeAndPlay(this)"></video>
+                    </div>
+                      </td>
+                    </tr>
+ 
+                  </table>
+                <div style="position:relative;padding-left:25%;">
+
+            </div>
+            
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Citation
+                </h3>
+                <div class="form-group col-md-10 col-md-offset-1">
+                    <textarea id="bibtex" class="form-control" readonly>
+@article{petit2023ring,
+title={RING-NeRF: A Versatile Architecture based on Residual Implicit Neural Grids},
+author={Petit, Doriand and Bourgeois, Steve and Pavel, Dumitru and Gay-Bellile, Vincent and Chabot, Florian and Barthe, Loic},
+journal={arXiv preprint arXiv:2312.03357},
+year={2023}
+}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Acknowledgements
+                </h3>
+                <p class="text-justify">
+                This publication was made possible by the use of the CEA List FactoryIA supercomputer, financially supported by the Ile-de-France Regional Council
+                    <br><br>
+                The website template was borrowed from <a href="http://mgharbi.com/">Michaël Gharbi</a>, <a href="https://dorverbin.github.io/refnerf">Ref-NeRF</a> and <a href="https://nerfies.github.io/">nerfies</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
