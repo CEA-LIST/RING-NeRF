@@ -3,4 +3,5 @@ This is the official repository for **RING-NeRF : A Versatile Architecture based
 
 It contains the source code of the associated project page and will soon contain RING-NeRF's source code.
 
+The project page can be found at : https://cea-list.github.io/RING-NeRF/
 
