@@ -17,12 +17,40 @@
     <meta property="og:image:height" content="840">
     <meta property="og:type" content="website" />
     <!-- <meta property="og:url" content="https://jonbarron.info/zipnerf/"/> -->
-    <meta property="og:title" content="RING-NeRF: A Versatile Architecture based on Residual Implicit Neural Grids" />
-    <meta property="og:description" content="Since their introduction, Neural Fields have become very popular for 3D reconstruction and new view synthesis. Recent researches focused on accelerating the process, as well as improving the robustness to variation of the observation distance and limited number of supervised viewpoints. However, those approaches often led to dedicated solutions that cannot be easily combined. To tackle this issue, we introduce a new simple but efficient architecture named RING-NeRF, based on Residual Implicit Neural Grids, that provides a control on the level of detail of the mapping function between the scene and the latent spaces. Associated with a distance-aware forward mapping mechanism and a continuous coarse-to-fine reconstruction process, our versatile architecture demonstrates both fast training and state-of-the-art performances in terms of: (1) anti-aliased rendering, (2) reconstruction quality from few supervised viewpoints, and (3) robustness in the absence of appropriate scene-specific initialization for SDF-based NeRFs. We also demonstrate that our architecture can dynamically add grids to increase the details of the reconstruction, opening the way to adaptive reconstruction." />
+    <meta property="og:title" content="RING-NeRF : Rethinking Inductive Biases for Versatile and Efficient Neural Fields" />
+    <meta property="og:description" content="Recent advances in Neural Fields mostly rely on develop-
+    ing task-specific supervision which often complicates the models. Rather
+    than developing hard-to-combine and specific modules, another approach
+    generally overlooked is to directly inject generic priors on the scene rep-
+    resentation (also called inductive biases) into the NeRF architecture.
+    Based on this idea, we propose the RING-NeRF architecture which in-
+    cludes two inductive biases : a continuous multi-scale representation of
+    the scene and an invariance of the decoder’s latent space over spatial and
+    scale domains. We also design a single reconstruction process that takes
+    advantage of those inductive biases and experimentally demonstrates on-
+    par performances in terms of quality with dedicated architecture on mul-
+    tiple tasks (anti-aliasing, few view reconstruction, SDF reconstruction
+    without scene-specific initialization) while being more efficient. More-
+    over, RING-NeRF has the distinctive ability to dynamically increase the
+    resolution of the model, opening the way to adaptive reconstruction." />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="RING-NeRF: A Versatile Architecture based on Residual Implicit Neural Grids" />
-    <meta name="twitter:description" content="Since their introduction, Neural Fields have become very popular for 3D reconstruction and new view synthesis. Recent researches focused on accelerating the process, as well as improving the robustness to variation of the observation distance and limited number of supervised viewpoints. However, those approaches often led to dedicated solutions that cannot be easily combined. To tackle this issue, we introduce a new simple but efficient architecture named RING-NeRF, based on Residual Implicit Neural Grids, that provides a control on the level of detail of the mapping function between the scene and the latent spaces. Associated with a distance-aware forward mapping mechanism and a continuous coarse-to-fine reconstruction process, our versatile architecture demonstrates both fast training and state-of-the-art performances in terms of: (1) anti-aliased rendering, (2) reconstruction quality from few supervised viewpoints, and (3) robustness in the absence of appropriate scene-specific initialization for SDF-based NeRFs. We also demonstrate that our architecture can dynamically add grids to increase the details of the reconstruction, opening the way to adaptive reconstruction." />
+    <meta name="twitter:title" content="RING-NeRF : Rethinking Inductive Biases for Versatile and Efficient Neural Fields" />
+    <meta name="twitter:description" content="Recent advances in Neural Fields mostly rely on develop-
+    ing task-specific supervision which often complicates the models. Rather
+    than developing hard-to-combine and specific modules, another approach
+    generally overlooked is to directly inject generic priors on the scene rep-
+    resentation (also called inductive biases) into the NeRF architecture.
+    Based on this idea, we propose the RING-NeRF architecture which in-
+    cludes two inductive biases : a continuous multi-scale representation of
+    the scene and an invariance of the decoder’s latent space over spatial and
+    scale domains. We also design a single reconstruction process that takes
+    advantage of those inductive biases and experimentally demonstrates on-
+    par performances in terms of quality with dedicated architecture on mul-
+    tiple tasks (anti-aliasing, few view reconstruction, SDF reconstruction
+    without scene-specific initialization) while being more efficient. More-
+    over, RING-NeRF has the distinctive ability to dynamically increase the
+    resolution of the model, opening the way to adaptive reconstruction." />
     <!-- <meta name="twitter:image" content="https://jonbarron.info/zipnerf/img/teaser.jpg" /> -->
 
 
@@ -63,14 +91,14 @@ href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css
     <script src="./static/js/bulma-carousel.min.js"></script>
     <script src="./static/js/bulma-slider.min.js"></script>
     <script src="./static/js/index.js"></script>
-
+    <!-- <script src="./static/js/index2.js"></script> -->
 </head>
 
 <body>
     <div class="container" id="main">
         <div class="row">
             <h2 class="col-md-12 text-center">
-                <b>RING-NeRF </b>: A Versatile Architecture based on Residual Implicit Neural Grids</br> 
+                <b>RING-NeRF </b>: Rethinking Inductive Biases for Versatile and Efficient Neural Fields</br> 
             </h2>
         </div>
         <div class="row">
@@ -117,7 +145,7 @@ href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css
                     <ul class="nav nav-pills nav-justified">
                         <li>
                             <a href="https://arxiv.org/abs/2312.03357">
-                            <image src="img/paper_image.jpg" height="60px">
+                            <image src="img/paper_image.png" height="60px">
                                 <h4><strong>Paper</strong></h4>
                             </a>
                         </li>
@@ -139,7 +167,20 @@ href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css
                     Abstract
                 </h3>
                 <p class="text-justify">
-Since their introduction, Neural Fields have become very popular for 3D reconstruction and new view synthesis. Recent researches focused on accelerating the process, as well as improving the robustness to variation of the observation distance and limited number of supervised viewpoints. However, those approaches often led to dedicated solutions that cannot be easily combined. To tackle this issue, we introduce a new simple but efficient architecture named RING-NeRF, based on Residual Implicit Neural Grids, that provides a control on the level of detail of the mapping function between the scene and the latent spaces. Associated with a distance-aware forward mapping mechanism and a continuous coarse-to-fine reconstruction process, our versatile architecture demonstrates both fast training and state-of-the-art performances in terms of: (1) anti-aliased rendering, (2) reconstruction quality from few supervised viewpoints, and (3) robustness in the absence of appropriate scene-specific initialization for SDF-based NeRFs. We also demonstrate that our architecture can dynamically add grids to increase the details of the reconstruction, opening the way to adaptive reconstruction.                 </p>
+                    Recent advances in Neural Fields mostly rely on developing task-specific supervision which often complicates the models. Rather
+                    than developing hard-to-combine and specific modules, another approach
+                    generally overlooked is to directly inject generic priors on the scene rep
+                    resentation (also called inductive biases) into the NeRF architecture.
+                    Based on this idea, we propose the RING-NeRF architecture which in
+                    cludes two inductive biases : a continuous multi-scale representation of
+                    the scene and an invariance of the decoder’s latent space over spatial and
+                    scale domains. We also design a single reconstruction process that takes
+                    advantage of those inductive biases and experimentally demonstrates on
+                    par performances in terms of quality with dedicated architecture on mul
+                    tiple tasks (anti-aliasing, few view reconstruction, SDF reconstruction
+                    without scene-specific initialization) while being more efficient. More
+                    over, RING-NeRF has the distinctive ability to dynamically increase the
+                    resolution of the model, opening the way to adaptive reconstruction.                 </p>
             </div>
         </div>
 
@@ -150,17 +191,21 @@ Since their introduction, Neural Fields have become very popular for 3D reconstr
                 </h3>
                 <div class="text-center">
                     <div style="position:relative;padding-top:30.25%;">
-                        <img src="img/global_scheme.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                        <img src="img/global.png" style="position:absolute;top:0;left:0;width:100%;height:100%;">
                     </div>
                     <p class="text-justify">
-                        Overview of RING-NeRF: to render a pixel, the casted cone is sampled with cubes. Depending on the cube volume, the corresponding LOD of the scene is selected and the latent feature is computed from the Residual Implicit Neural Grids accordingly. The density and color of the cube are first decoded from the latent feature with a tiny MLP and then integrated with other samples through volume rendering.</p>
+                        Overview of RING-NeRF: to render a pixel, the casted cone is sampled with
+                        cubes. Depending on the cube volume, the corresponding LOD of the scene is selected
+                        and the latent feature is computed using a weighted sum of the grid hierarchy. The
+                        density (or SDF) and color of the cube are first decoded from the latent feature with
+                        a tiny MLP and then integrated with other samples through volume rendering.</p>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
-                    A NERF architecture which induces Level Of Details by design
+                    A NERF architecture with an LOD inductive bias
                 </h3>
                 <p class="text-justify">
                     While a Neural Field based on a single 3D feature grid defines a single mapping function between the MLP-decoder feature space and the 3D scene space, our architecture, with its 3D hierarchical grid linked with residual connections, is able to define such a function continuously in the scale space. The architecture itself induces, by construction, a notion of level of details in the representation, allowing to reconstruct a scene at multiple precisions even if the reconstruction is only supervised at the highest level of details.
@@ -193,7 +238,7 @@ Since their introduction, Neural Fields have become very popular for 3D reconstr
                     The model illustrated here contains 8 grids of increasing resolution which have all been used jointly for the training at maximum precision. Even without specific supervision, any LOD in-between 1 and 8 can be chosen to reconstruct the scene with the corresponding resolution.
                   </p>
                   <p>
-                    Moreover, unlike other architectures that rely on a decoder latent-space which is not invariant to the position in the 3D scene space due to the use of positional encoding (eg. NGLOD) nor invariant to the level of details due to the use of feature concatenation (eg. Instant-NGP) , downweigthing related the LOD (eg. Zip-NeRF) or use of per-level MLP-decoder (eg. NGLOD, MFLOD,…), our architecture relies on a latent space that is invariant to both of them. This property makes our architecture particularly suitable for incremental reconstruction in space and level of details.
+                    Moreover, unlike other architectures that rely on a decoder latent-space which is not invariant to the position in the 3D scene space due to the use of positional encoding (eg. NGLOD) nor invariant to the level of details due to the use of feature concatenation (eg. Instant-NGP) , feature modification based on the LOD (eg. Zip-NeRF) or use of per-LOD MLP-decoder (eg. PyNeRF), our architecture relies on a latent space that is invariant to both of them. This property makes our architecture particularly suitable for incremental reconstruction in space and level of details.
                   </p>
                 </div>
         </div>
@@ -204,6 +249,10 @@ Since their introduction, Neural Fields have become very popular for 3D reconstr
                 <h3>
                     Distance-Aware Forward Mapping for Fast Anti-Aliazing 
                 </h3>
+
+                <h4>
+                    Anti-Aliasing Mechanism
+                </h4>
                 <p class="text-justify">
                     We also use the properties of our architecture to propose an adapted distance-aware forward mapping to easily solve aliasing issues. 
                 </p> <p class="text-justify">
@@ -213,6 +262,11 @@ Since their introduction, Neural Fields have become very popular for 3D reconstr
                 <div class="column">
                 <video class="video" width=10% id="xyalias" loop playsinline autoplay muted src="img/FullAA.mp4" onplay="resizeAndPlay(this)"></video>
                 <canvas height=0 class="videoMerge" id="xyaliasMerge"></canvas></div>
+                
+                <h4>
+                    Fast Training and Rendering
+                </h4>
+
                 <p>
                     Similarly to Zip-NeRF, our solution uses cone-casting to adjust the level of details depending on the distance of the sample to the camera. However, unlike Zip-NeRF, the LOD is directly captured by our scene representation. Consequently, our solution is much faster than Zip-NeRF for both reconstruction and rendering since it does not need to achieve multi-sampling, while providing equivalent quality.
                     
@@ -220,6 +274,24 @@ Since their introduction, Neural Fields have become very popular for 3D reconstr
                 <div class="column">
                 <video class="video" width=150% id="timezip" controls loop playsinline autoplay muted onplay="resizeAndPlay(this)">
                     <source src="img/ZipCompa.mp4" type="video/mp4" /></video>
+                </div>
+
+                <h4>
+                    Supervision-Free Anti-Aliasing
+                </h4>
+
+                <p>
+                    Thanks to its LOD inductive bias, RING-NeRF does not necessarily rely on supervision to produce different level of detail. 
+                    This implies that our architecture can generalize over novel observation distances without seeing them during training. 
+                    This property, although important, is not common in other anti-aliasing methods. For instance, both PyNeRF and ZipNeRF cannot 
+                    render coherent aliasing-free images at novel observation distances. This is illustrated in the following video, where all 
+                    three models were solely trained on the full resolution images and renders were done in 1/8th resolution. Note that the aliasing artefacts
+                    are especially visible on the central object.
+                    
+                </p>
+                <div class="column">
+                <video class="video" width=150% id="timezip" controls loop playsinline autoplay muted onplay="resizeAndPlay(this)">
+                    <source src="img/MoMux8LowRes.mp4" type="video/mp4" /></video>
                 </div>
             </div> 
         </div>
@@ -271,12 +343,51 @@ Since their introduction, Neural Fields have become very popular for 3D reconstr
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
+                    Resolution Extensibility Property
+                </h3>
+                <p class="text-justify">
+                    One unique property of our scene representation is its capacity to be dynamically refined by
+                    adding new grid levels without modifying the decoder’s weights or previously trained grids. This
+                    resolution extensibility property opens the path to adaptive resolution models,
+                    where the precision used to describe an area depends on the details needed, to
+                    optimize efficiency both in memory consumption and training duration.
+                </p>
+                
+
+                <!-- <div class="columns is-vcentered interpolation-panel">
+                   
+                    <div class="column interpolation-video-column">
+                      <div id="interpolation-image-wrapper2">
+                        Loading...
+                      </div>
+                      <input class="slider is-fullwidth is-large is-info"
+                             id="interpolation-slider"
+                             step="1" min="3" max="6" value="3" type="range">
+                    </div>
+                    
+                  </div> -->
+                  <p class="text-justify">
+                    Here, we showcase the property of our model. We use a grid hierarchy of 6 levels from 16 to 512 max resolution. We begin the reconstruction with only the first three levels, train both the grid and the decoder to convergence and then freeze both of them. We then proceed to train to convergence one novel grid at a time, freezing the previous one at convergence. 
+                </p>
+                <div style="position:relative;padding-top:20.25%;">
+                    <img src="img/garden.jpg" style="position:absolute;top:0;left:0">
+                </div>
+                  <p>
+                    This showcases both the capacity of our model to reconstruct finer details after the decoder's training and its ability to keep the coarser LOD valid. 
+                  </p>
+                </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
                     Citation
                 </h3>
                 <div class="form-group col-md-10 col-md-offset-1">
                     <textarea id="bibtex" class="form-control" readonly>
 @article{petit2023ring,
-title={RING-NeRF: A Versatile Architecture based on Residual Implicit Neural Grids},
+title={RING-NeRF: Rethinking Inductive Biases for Versatile and Efficient Neural Fields},
 author={Petit, Doriand and Bourgeois, Steve and Pavel, Dumitru and Gay-Bellile, Vincent and Chabot, Florian and Barthe, Loic},
 journal={arXiv preprint arXiv:2312.03357},
 year={2023}
