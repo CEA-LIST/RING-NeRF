@@ -134,24 +134,53 @@ href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css
                           Loïc Barthe²
                         </a>
                     </li>
-                    </br>¹Université Paris-Saclay, CEA List, F-91120, Palaiseau, France     ²CNRS, IRIT, Université de Toulouse, France
+                    </br>¹Université Paris-Saclay, CEA List, F-91120, Palaiseau, France     ²IRIT, Université Toulouse III, CNRS, France
                 </ul>
             </div>
         </div>
 
+        <div class="row">
+            <h3 class="col-md-12 text-center" style="color:red;">
+                <b>🎉 RING-NeRF has been accepted to ECCV'24 ! See you @ Milan ! 🎉 </b> 
+            </h3>
+        </div>
+        <script src="js/confetti.js"></script>
+    <script>    
+                // for starting the confetti 
+        
+                const start = () => {
+                    setTimeout(function() {
+                        confetti.start()
+                    }, 1000); // 1000 is time that after 1 second start the confetti ( 1000 = 1 sec)
+                };
+        
+                //  for stopping the confetti 
+        
+                const stop = () => {
+                    setTimeout(function() {
+                        confetti.stop()
+                    }, 5000); // 5000 is time that after 5 second stop the confetti ( 5000 = 5 sec)
+                };
+        // after this here we are calling both the function so it works
+                start();
+                stop();
+        
+        // if you dont want to make it stop and make it infinite you can just remove the stop function 😊
+        
+        </script>
 
         <div class="row">
                 <div class="col-md-4 col-md-offset-4 text-center">
                     <ul class="nav nav-pills nav-justified">
                         <li>
                             <a href="https://arxiv.org/abs/2312.03357">
-                            <image src="img/paper_image.png" height="60px">
+                            <image src="img/paper_image.png" height="40px">
                                 <h4><strong>Paper</strong></h4>
                             </a>
                         </li>
                         <li>
                             <a href="https://github.com/CEA-LIST">
-                            <image src="img/github.png" height="60px">
+                            <image src="img/github.png" height="40px">
                                 <h4><strong>Code (To be released)</strong></h4>
                             </a>
                         </li>
@@ -169,17 +198,17 @@ href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css
                 <p class="text-justify">
                     Recent advances in Neural Fields mostly rely on developing task-specific supervision which often complicates the models. Rather
                     than developing hard-to-combine and specific modules, another approach
-                    generally overlooked is to directly inject generic priors on the scene rep
-                    resentation (also called inductive biases) into the NeRF architecture.
+                    generally overlooked is to directly inject generic priors on the scene representation
+                     (also called inductive biases) into the NeRF architecture.
                     Based on this idea, we propose the RING-NeRF architecture which in
                     cludes two inductive biases : a continuous multi-scale representation of
                     the scene and an invariance of the decoder’s latent space over spatial and
                     scale domains. We also design a single reconstruction process that takes
                     advantage of those inductive biases and experimentally demonstrates on
-                    par performances in terms of quality with dedicated architecture on mul
-                    tiple tasks (anti-aliasing, few view reconstruction, SDF reconstruction
-                    without scene-specific initialization) while being more efficient. More
-                    over, RING-NeRF has the distinctive ability to dynamically increase the
+                    par performances in terms of quality with dedicated architecture on multiple
+                     tasks (anti-aliasing, few view reconstruction, SDF reconstruction
+                    without scene-specific initialization) while being more efficient. Moreover, 
+                    RING-NeRF has the distinctive ability to dynamically increase the
                     resolution of the model, opening the way to adaptive reconstruction.                 </p>
             </div>
         </div>
@@ -386,11 +415,11 @@ href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css
                 </h3>
                 <div class="form-group col-md-10 col-md-offset-1">
                     <textarea id="bibtex" class="form-control" readonly>
-@article{petit2024ring,
-title={RING-NeRF: Rethinking Inductive Biases for Versatile and Efficient Neural Fields},
-author={Petit, Doriand and Bourgeois, Steve and Pavel, Dumitru and Gay-Bellile, Vincent and Chabot, Florian and Barthe, Loic},
-journal={arXiv preprint arXiv:2312.03357},
-year={2024}
+@inproceedings{petit2024ring,
+    title={RING-NeRF: Rethinking Inductive Biases for Versatile and Efficient Neural Fields},
+    author={Petit, Doriand and Bourgeois, Steve and Pavel, Dumitru and Gay-Bellile, Vincent and Chabot, Florian and Barthe, Loic},
+    journal={European Conference on Computer Vision (ECCV)},
+    year={2024}
 }</textarea>
                 </div>
             </div>
