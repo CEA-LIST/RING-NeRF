@@ -65,8 +65,17 @@ To achieve the same results from the RING-NeRF paper, you may need to modify the
         Reference: See field.py, line 218 for detailed instructions and explanations.
 
 
+## Citation
 
-
+If you find this work useful for your research, please cite our ECCV 2024 paper:
+```bibtex
+@inproceedings{petit2024ringnerf,
+  title={RING-NeRF: Rethinking Inductive Biases for Versatile and Efficient Neural Fields},
+  author={Petit, Doriand and Bourgeois, Steve and Pavel, Dumitru and Gay-Bellile, Vincent and Chabot, Florian and Barthe, Lo{\"\i}c},
+  booktitle={European Conference on Computer Vision (ECCV)},
+  year={2024}
+}
+```
 
 
 
