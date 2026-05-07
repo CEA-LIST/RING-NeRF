@@ -1,0 +1,3 @@
+[nerfstudio.method_configs]
+mip_ring_nerf = ring_nerf.method_configs:mip_ring_nerf_method
+ring_nerf = ring_nerf.method_configs:ring_nerf_method

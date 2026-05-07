@@ -1,0 +1,14 @@
+[project]
+name = "ring_nerf"
+version = "0.1.0"
+
+dependencies=[
+]
+
+[tool.setuptools.packages.find]
+include = ["ring_nerf*"]
+
+[project.entry-points.'nerfstudio.method_configs']
+ring_nerf = "ring_nerf.method_configs:ring_nerf_method"
+
+[project.entry-points.'nerfstudio.dataparser_configs']

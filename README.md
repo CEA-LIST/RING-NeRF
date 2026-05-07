@@ -30,13 +30,39 @@
 </div>
 
 ***
-**This is the official repository of  RING-NeRF: Rethinking Inductive Biases for Versatile and Efficient Neural Fields and contains the source code of the associated project page. The publication's source code will soon be released in this repository.**
+**This is the official repository of  RING-NeRF: Rethinking Inductive Biases for Versatile and Efficient Neural Fields and contains the source code of the associated project page as well as the method's source code.**
 
 ## Abstract
 > Recent advances in Neural Fields mostly rely on developing task-specific supervision which often complicates the models. Rather than developing hard-to-combine and specific modules, another approach generally overlooked is to directly inject generic priors on the scene representation (also called inductive biases) into the NeRF architecture. Based on this idea, we propose the RING-NeRF architecture which in cludes two inductive biases : a continuous multi-scale representation of the scene and an invariance of the decoder’s latent space over spatial and scale domains. We also design a single reconstruction process that takes advantage of those inductive biases and experimentally demonstrates on par performances in terms of quality with dedicated architecture on multiple tasks (anti-aliasing, few view reconstruction, SDF reconstruction without scene-specific initialization) while being more efficient. Moreover, RING-NeRF has the distinctive ability to dynamically increase the resolution of the model, opening the way to adaptive reconstruction.
 
 
+## Getting Started
 
+### 1. Prerequisites
+This implementation is built on [Nerfstudio](https://docs.nerf.studio/). Please ensure you have it installed and configured according to their official documentation before proceeding.
+
+### 2. Installation
+Clone the repository and install the package in editable mode:
+```bash
+# Clone the repository
+git clone git@github.com:CEA-LIST/RING-NeRF.git
+cd RING-NeRF
+
+# Install as an editable package
+pip install -e .
+
+```
+No additional dependencies are required beyond a standard Nerfstudio environment.
+
+### 3. Distance-Aware LOD Configuration
+
+To achieve the same results from the RING-NeRF paper, you may need to modify the Nerfstudio core:
+
+    Standard Mode: By default, the code uses a simplified distance-aware LOD computation.
+
+    Original Paper Formulation: To enable the original distance-aware LOD used in the publication, you must modify the cameras.py file inside your installed nerfstudio library.
+
+        Reference: See field.py, line 218 for detailed instructions and explanations.
 
 
 
